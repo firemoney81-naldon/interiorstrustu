@@ -1,23 +1,513 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
+
+
+    <style>
+        /* 기본 스타일 재설정 */
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa; /* 부드러운 배경색 */
+            color: #333;
+        }
+
+        /* 레이아웃 컨테이너 */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        header, section, footer {
+            padding: 40px 30px;
+        }
+
+        /* 헤더 스타일 */
+        header {
+            background-color: #e0f2f1; /* 부드러운 민트 계열 색상 */
+            color: #1a1a1a;
+            text-align: center;
+            border-bottom: 2px solid #b2dfdb;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            color: #00796b; /* 핵심 강조 색상 */
+            margin-bottom: 0.2em;
+        }
+
+        header p {
+            font-size: 1.1em;
+            color: #555;
+            margin-top: 0;
+        }
+
+        /* 네비게이션 스타일 */
+        nav {
+            background-color: #00796b;
+            padding: 10px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            display: block;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #004d40;
+        }
+
+        /* 섹션 공통 스타일 */
+        section {
+            padding: 60px 40px;
+            border-bottom: 1px solid #eee;
+        }
+
+        section h2 {
+            font-size: 2em;
+            color: #00796b;
+            margin-bottom: 20px;
+            border-left: 5px solid #00796b;
+            padding-left: 15px;
+        }
+
+        section h3 {
+            font-size: 1.5em;
+            color: #333;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 1em;
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        /* CTA 버튼 스타일 (다채롭고 부드러운 느낌으로 변경) */
+        .btn-cta {
+            display: inline-block;
+            padding: 14px 30px;
+            background: linear-gradient(to right, #4db6ac, #00796b); /* 그라데이션 적용 */
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.1em;
+            border-radius: 30px;
+            box-shadow: 0 6px 12px rgba(0, 121, 107, 0.4);
+            transition: all 0.3s ease;
+            text-align: center;
+            margin-top: 20px;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+        }
+
+        .btn-cta:hover {
+            background: linear-gradient(to right, #00796b, #4db6ac);
+            box-shadow: 0 8px 16px rgba(0, 121, 107, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* 리스트 및 표 스타일 */
+        ul, ol {
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            color: #444;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #e0f2f1; /* 부드러운 색상 */
+            color: #00796b;
+            font-weight: 600;
+        }
+
+        td {
+            background-color: #ffffff;
+        }
+
+        /* 폼 스타일 */
+        form {
+            background: #fcfcfc;
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        input[type="text"], input[type="tel"], textarea, select {
+            width: calc(100% - 20px);
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        /* 앵커 스타일 */
+        .anchor {
+            display: block;
+            position: relative;
+            top: -80px;
+            visibility: hidden;
+        }
+
+        /* 푸터 스타일 */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 30px;
+            font-size: 0.9em;
+            margin-top: 0;
+        }
+
+        footer a {
+            color: #e0f2f1;
+            text-decoration: none;
+        }
+
+        /* 강조 텍스트 */
+        .highlight {
+            color: #00796b;
+            font-weight: bold;
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+            nav ul {
+                flex-direction: column;
+            }
+            nav ul li {
+                text-align: center;
+                margin-bottom: 5px;
+            }
+            section {
+                padding: 30px 20px;
+            }
+            .btn-cta {
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+    </style>
+
+    <!-- Schema.org HomeAndConstructionBusiness 마크업(JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HomeAndConstructionBusiness",
+        "name": "산본 인테리어 디자인 전문",
+        "image": "https://도메인/산본인테리어_메인.jpg",
+        "url": "https://도메인/sanbon-interior",
+        "telephone": "031-123-4567",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "경기도 군포시 산본동 ○○로 ○○",
+            "addressLocality": "군포시",
+            "addressRegion": "경기",
+            "postalCode": "15800",
+            "addressCountry": "KR"
+        },
+        "areaServed": [
+            { "@type": "City", "name": "군포시" },
+            { "@type": "City", "name": "산본동" },
+            { "@type": "City", "name": "금정동" }
+        ],
+        "priceRange": "₩₩₩",
+        "description": "산본 지역 아파트, 빌라, 주거 공간 전문 인테리어 및 리모델링 서비스. 2026년 최신 트렌드를 반영한 합리적인 비용의 디자인 시공을 제공합니다.",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "125"
+        },
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                "opens": "09:00",
+                "closes": "18:00"
+            }
+        ]
+    }
+    </script>
+</head>
+
+<body>
+<div class="container">
+    <header>
+        <h1>산본 인테리어 전문 업체 | 2026년 맞춤 디자인</h1>
+        <p>20평대, 30평대 아파트 리모델링부터 신축 주택 시공까지, 산본 지역 최고의 가치를 선사합니다.</p>
+        <a href="#consultation" class="btn-cta">무료 견적 상담 받기</a>
+    </header>
+
+    <nav aria-label="페이지 내 이동">
+        <ul>
+            <li><a href="#about-us">회사 소개</a></li>
+            <li><a href="#services">주요 서비스</a></li>
+            <li><a href="#price-guide">인테리어 비용 가이드</a></li>
+            <li><a href="#process">시공 과정</a></li>
+            <li><a href="#references">추천 및 후기</a></li>
+            <li><a href="#consultation">상담 문의</a></li>
+        </ul>
     </nav>
+
     <main>
-      <h1>Home page</h1>
+        <!-- 섹션 1: 회사 소개 및 서비스 지역 -->
+        <section id="about-us">
+            <span id="about-us-anchor" class="anchor"></span>
+            <h2>산본 인테리어, 왜 우리를 선택해야 할까요?</h2>
+            <p>우리 회사는 10년 이상 산본 지역에서 인테리어 및 리모델링 서비스를 전문으로 제공해왔습니다. 특히 <span class="highlight">산본동</span>, <span class="highlight">금정동</span>, <span class="highlight">궁내동</span>, <span class="highlight">오금동</span>, <span class="highlight">수리동</span> 등 산본시 전역의 아파트 구조에 대한 깊은 이해를 바탕으로 고객 맞춤형 디자인을 제안합니다. 복잡한 리모델링 과정에 대한 걱정 없이, 믿을 수 있는 전문 시공을 통해 고객님의 주거 만족도를 높여드리겠습니다.</p>
+            <h3>산본 아파트 인테리어 맞춤 서비스</h3>
+            <p>산본 지역은 <span class="highlight">산본1동 주공아파트</span>, <span class="highlight">산본2동 주공아파트</span>, <span class="highlight">개나리 주공아파트</span>, <span class="highlight">목련 아파트</span> 등 다양한 시기에 건설된 주공아파트 단지들이 많습니다. 이러한 아파트들은 노후된 배관, 좁은 주방, 비효율적인 공간 구조 등 공통적인 리모델링 필요성을 가지고 있습니다. 저희는 이러한 문제점을 정확히 진단하고, 2026년 최신 트렌드를 반영한 모던하고 실용적인 공간으로 탈바꿈시켜 드립니다. <span class="highlight">30평대 인테리어</span>, <span class="highlight">20평대 인테리어</span> 등 평형별 전문 솔루션을 보유하고 있습니다.</p>
+
+            <h3>주요 서비스 가능 지역 (30+ 지역 키워드 삽입)</h3>
+            <p>산본 지역뿐만 아니라 인접한 군포시 전 지역 인테리어가 가능합니다. <span class="highlight">금정역</span> 인근, <span class="highlight">산본역</span> 주변, <span class="highlight">수리산역</span> 일대는 물론 <span class="highlight">대야미</span>, <span class="highlight">당정동</span>, <span class="highlight">부곡동</span>, <span class="highlight">도마교동</span>, <span class="highlight">속달동</span>, <span class="highlight">둔대동</span> 등 군포 전역의 빌라, 주택, 아파트 인테리어 서비스를 제공합니다. <span class="highlight">평촌</span>, <span class="highlight">의왕</span> 등 인접 지역 인테리어도 문의 가능합니다.</p>
+        </section>
+
+        <!-- 섹션 2: 인테리어 유형별 서비스 상세 -->
+        <section id="services">
+            <span id="services-anchor" class="anchor"></span>
+            <h2>산본 인테리어 주요 서비스 유형 및 범위</h2>
+            <p>고객님의 예산과 요구사항에 맞춰 전체 리모델링부터 부분 시공까지 다양한 옵션을 제안합니다. 단순히 낡은 부분을 바꾸는 것을 넘어, 고객님의 라이프스타일을 반영한 새로운 공간을 창조합니다.</p>
+
+            <h3>1. 전체 올 리모델링 (Full Remodeling)</h3>
+            <ul>
+                <li><strong>범위:</strong> 주방(싱크대), 욕실(타일 및 설비), 바닥재(마루/타일), 도배/벽체, 조명, 문/샷시 교체 등 모든 공간을 포함합니다.</li>
+                <li><strong>추천 대상:</strong> 20년 이상 노후된 아파트 또는 신혼부부/입주 예정자 중 완벽한 변화를 원하는 분.</li>
+                <li><strong>특징:</strong> <span class="highlight">산본 아파트</span>의 고질적인 문제(난방 배관, 누수, 곰팡이)를 해결하고, 최신 단열 및 방음 기술을 적용하여 주거 쾌적성을 극대화합니다.</li>
+            </ul>
+
+            <h3>2. 부분 인테리어 시공 (Partial Remodeling)</h3>
+            <ul>
+                <li><strong>범위:</strong> 주방, 욕실, 거실 확장, 창호 교체 등 특정 공간만 진행합니다.</li>
+                <li><strong>추천 대상:</strong> 예산이 한정적이거나 일부 노후된 공간만 개선하고 싶은 분.</li>
+                <li><strong>특징:</strong> <span class="highlight">산본 주방 리모델링</span>은 주부님들의 동선을 고려한 "ㄷ"자형 또는 "11"자형 배치로 공간 활용도를 높이며, <span class="highlight">산본 욕실 인테리어</span>는 위생적인 건식 욕실 또는 쾌적한 습식 욕실로 시공 가능합니다.</li>
+            </ul>
+
+            <h3>3. 맞춤형 디자인 (Custom Design)</h3>
+            <p>단순한 시공을 넘어, 고객님의 취향을 반영한 맞춤형 디자인을 제공합니다. <span class="highlight">모던 인테리어</span>, <span class="highlight">미니멀 인테리어</span>, <span class="highlight">내추럴 인테리어</span>, <span class="highlight">북유럽풍 인테리어</span> 등 다양한 스타일을 제안하며, 특히 2026년 트렌드인 스마트 홈 기능을 인테리어에 통합하는 서비스를 제공합니다.</p>
+        </section>
+
+        <!-- 섹션 3: 인테리어 비용 가이드 (SEO 핵심) -->
+        <section id="price-guide">
+            <span id="price-guide-anchor" class="anchor"></span>
+            <h2>산본 인테리어 비용 가이드: 2026년 견적 분석 및 비교</h2>
+            <p>인테리어 <span class="highlight">비용</span>은 평형, 자재 선택, 시공 범위, <span class="highlight">업체별</span> 마진 등 다양한 요소에 따라 크게 달라집니다. <span class="highlight">저렴한곳</span>을 찾기 전에, <span class="highlight">합리적인 가격</span>으로 <span class="highlight">내돈내산</span> 후기 좋은 <span class="highlight">추천</span> 업체를 선정하는 것이 중요합니다. 아래는 산본 지역의 일반적인 <span class="highlight">예상</span> <span class="highlight">가격</span> <span class="highlight">평균</span>입니다. (2026년 기준)</p>
+
+            <h3>1. 아파트 평형별 인테리어 <span class="highlight">평균 비용</span> (올 수리 기준)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>평형대</th>
+                        <th>평균 <span class="highlight">견적</span> 범위</th>
+                        <th>자재 등급</th>
+                        <th>주요 시공 내용</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>20평대 (24~26평)</td>
+                        <td>1,800만원 ~ 2,500만원</td>
+                        <td>가성비 기본형</td>
+                        <td>싱크대, 욕실 1개, 바닥재, 도배, 조명, 문 교체</td>
+                    </tr>
+                    <tr>
+                        <td>30평대 (32~34평)</td>
+                        <td>2,500만원 ~ 3,500만원</td>
+                        <td>표준형 (가성비+디자인)</td>
+                        <td>싱크대, 욕실 2개, 바닥재, 도배, 샷시 일부, 거실 확장</td>
+                    </tr>
+                    <tr>
+                        <td>40평대 이상</td>
+                        <td>4,000만원 ~ 6,000만원+</td>
+                        <td>고급형 (자재 업그레이드)</td>
+                        <td>전체 샷시 교체, 맞춤 가구 제작, 프리미엄 마감재, 간접 조명 다수</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="small-info">※ 위 <span class="highlight">가격</span>은 <span class="highlight">평균</span> <span class="highlight">견적</span>이며, <span class="highlight">산본 인테리어</span> 업체마다 <span class="highlight">차이점</span>이 있습니다. 정확한 <span class="highlight">비용</span>은 현장 방문 <span class="highlight">견적</span>을 통해 확인해야 합니다.</p>
+
+            <h3>2. 인테리어 <span class="highlight">비용</span>을 결정하는 주요 요소</h3>
+            <ul>
+                <li><strong>샷시 교체 여부:</strong> 단열 및 방음의 핵심. 전체 교체 시 <span class="highlight">비용</span>이 크게 상승합니다. <span class="highlight">산본</span>의 노후 아파트는 샷시 교체가 필수인 경우가 많습니다.</li>
+                <li><strong>자재 등급:</strong> 바닥재(강마루 vs. 온돌마루), 타일(국산 vs. 수입), 주방 가구(한샘 vs. 리바트 vs. 일반 OEM) 등 자재에 따라 <span class="highlight">비용</span> <span class="highlight">차이점</span>이 발생합니다.</li>
+                <li><strong>철거 및 목공 작업 범위:</strong> 확장 공사, 비내력벽 철거, 천장 목공 등 인건비 비중이 높은 작업은 <span class="highlight">비용</span>을 높입니다.</li>
+            </ul>
+        </section>
+
+        <!-- 섹션 4: 인테리어 시공 프로세스 -->
+        <section id="process">
+            <span id="process-anchor" class="anchor"></span>
+            <h2>산본 인테리어 시공 과정: 성공적인 리모델링을 위한 체크리스트</h2>
+            <p>인테리어는 복잡한 과정이므로 체계적인 계획이 필요합니다. 저희는 <span class="highlight">산본</span> 지역 고객님들이 안심하고 시공을 진행할 수 있도록 투명한 프로세스를 운영합니다. 특히 아파트 <span class="highlight">리모델링</span> 시 이웃과의 민원 최소화에 중점을 둡니다.</p>
+
+            <h3>1단계: 현장 방문 및 상세 <span class="highlight">견적</span> 상담 (무료)</h3>
+            <p>전문 디자이너가 직접 현장을 방문하여 고객님의 라이프스타일과 <span class="highlight">예상</span> <span class="highlight">비용</span>을 파악합니다. 고객님의 취향을 반영한 디자인 포트폴리오를 제안합니다. 이 과정에서 <span class="highlight">산본</span> 지역 특유의 노후화된 구조적 <span class="highlight">단점</span>과 보수 필요성을 진단합니다.</p>
+
+            <h3>2단계: 계약 및 상세 디자인 설계</h3>
+            <p>1차 <span class="highlight">견적</span> 및 디자인 제안에 동의하시면 상세 계약을 진행합니다. <span class="highlight">20평대 인테리어</span>, <span class="highlight">30평대 인테리어</span> 등 평형별 <span class="highlight">장점</span>을 극대화하는 3D 디자인 시뮬레이션을 제공하여 시공 후 모습을 미리 확인합니다.</p>
+
+            <h3>3단계: 시공 및 관리 (공사 전후 <span class="highlight">체크리스트</span>)</h3>
+            <ul>
+                <li><strong>공사 전:</strong> 아파트 관리사무소 <span class="highlight">가입</span> 및 동의, 공사 안내문 부착, 인근 주민 동의서 확보 (특히 <span class="highlight">산본</span> 지역은 이웃 간 배려가 중요합니다).</li>
+                <li><strong>시공 중:</strong> 일일 작업 보고 및 현장 사진 공유, 공정별 전문가 투입 (목공, 타일, 전기, 도배 등).</li>
+                <li><strong>시공 후:</strong> 하자보수 <span class="highlight">보증</span> 및 A/S <span class="highlight">관리</span>.</li>
+            </ul>
+        </section>
+
+        <!-- 섹션 5: 인테리어 트렌드 및 팁 (정보성 콘텐츠) -->
+        <section id="tips">
+            <h2>2026년 산본 인테리어 트렌드와 성공 팁</h2>
+            <p>매년 인테리어 트렌드는 변화합니다. 2026년의 주요 트렌드는 미니멀리즘과 지속 가능성입니다. <span class="highlight">산본</span> 지역 고객님들 사이에서도 <span class="highlight">저렴한곳</span>을 찾으면서도 트렌드를 놓치지 않는 스마트한 <span class="highlight">리모델링</span>이 대세입니다.</p>
+
+            <h3>1. 스마트 홈 인테리어 통합</h3>
+            <p>AI 음성 제어, IoT 기기 통합, 스마트 조명 시스템 등이 인테리어의 기본 옵션으로 자리 잡고 있습니다. 2026년에는 <span class="highlight">산본 아파트</span>에서도 거실 조명, 커튼, 난방 시스템을 통합 제어하는 스마트 인테리어를 선호하는 추세입니다.</p>
+
+            <h3>2. 미니멀리즘과 무채색 기반의 내추럴 디자인</h3>
+            <p>화려한 패턴이나 색상보다는 베이지, 그레이, 화이트 등 무채색 기반에 원목이나 라탄 등 자연 소재로 포인트를 주는 내추럴 인테리어가 인기를 얻고 있습니다. <span class="highlight">산본 30평대 인테리어</span>에서 넓은 거실 공간을 활용하여 미니멀한 여백의 미를 살리는 디자인이 <span class="highlight">추천</span>됩니다.</p>
+
+            <h3>3. 지속 가능한 친환경 자재 사용</h3>
+            <p>환경 보호에 대한 인식이 높아지면서 친환경 페인트, VOC 저감 자재, FSC 인증 목재 등을 사용하여 주거 공간의 안전성을 높이는 것이 중요해졌습니다. <span class="highlight">산본 인테리어 업체</span> 중 <span class="highlight">장점</span>으로 친환경 시공을 내세우는 곳을 선택하는 것이 좋습니다.</p>
+        </section>
+
+        <!-- 섹션 6: 추천 업체 TOP 5 (SEO/사용자 만족도 강화) -->
+        <section id="references">
+            <span id="references-anchor" class="anchor"></span>
+            <h2>산본 인테리어 <span class="highlight">추천</span> 업체 <span class="highlight">TOP 5</span> (비교 및 <span class="highlight">순위</span>)</h2>
+            <p>산본 지역에는 많은 인테리어 업체가 있습니다. <span class="highlight">싼곳</span>이나 <span class="highlight">저렴한곳</span>만 찾기보다는, <span class="highlight">내돈내산</span> 후기와 시공 실력을 꼼꼼히 <span class="highlight">비교</span>하는 것이 중요합니다. 아래는 <span class="highlight">산본</span> 지역에서 고객 만족도 높은 <span class="highlight">추천</span> 업체 5곳입니다.</p>
+            <ol>
+                <li><strong>산본 디자인하우스:</strong> 산본역 인근, <span class="highlight">30평대 아파트 인테리어</span> 전문. 트렌디한 디자인과 합리적인 <span class="highlight">비용</span>의 조화.</li>
+                <li><strong>금정 리모델링:</strong> <span class="highlight">금정동</span> 위치, 노후 아파트 올수리 전문, 꼼꼼한 <span class="highlight">A/S 관리</span> <span class="highlight">장점</span>.</li>
+                <li><strong>궁내동 인테리어:</strong> <span class="highlight">궁내동</span> 인근, 친환경 자재 사용 특화, <span class="highlight">내돈내산</span> 후기 만족도 높음.</li>
+                <li><strong>산본 작은집 인테리어:</strong> <span class="highlight">20평대 원룸</span> 및 <span class="highlight">빌라 인테리어</span> <span class="highlight">전문</span>, <span class="highlight">가성비</span> <span class="highlight">최고</span> <span class="highlight">추천</span>.</li>
+                <li><strong>스타일앤디자인:</strong> <span class="highlight">산본</span> 지역 <span class="highlight">맞춤형 가구</span> 제작 특화. 고급 자재 사용, <span class="highlight">비용</span>은 높지만 퀄리티 보장.</li>
+            </ol>
+        </section>
+
+        <!-- 섹션 7: 자주 묻는 질문 (FAQ) -->
+        <section id="faq">
+            <h2>자주 묻는 질문 (FAQ) - 산본 인테리어 Q&A</h2>
+            <h3>Q1. <span class="highlight">산본 아파트 인테리어</span> 시공 기간은 얼마나 걸리나요?</h3>
+            <p>일반적으로 <span class="highlight">30평대</span> 올 수리 기준 3~4주가 소요됩니다. 부분 <span class="highlight">리모델링</span>은 1~2주 소요되며, 샷시 교체가 포함되거나 확장 공사가 진행되면 시공 기간이 길어질 수 있습니다. 특히 <span class="highlight">산본</span> 지역 아파트는 이사 시즌에 시공이 몰리는 경향이 있으므로 미리 예약하는 것이 좋습니다.</p>
+
+            <h3>Q2. <span class="highlight">인테리어 견적</span> 시 추가 <span class="highlight">비용</span>이 발생하나요?</h3>
+            <p>계약서에 명시되지 않은 숨겨진 <span class="highlight">비용</span>(Hidden cost)은 없는지 꼼꼼하게 <span class="highlight">체크리스트</span>를 확인해야 합니다. 특히 철거 <span class="highlight">비용</span>, 폐기물 처리 <span class="highlight">비용</span>, 사다리차 <span class="highlight">비용</span>, 아파트 관리비(선수금) 등이 견적서에 포함되었는지 확인하세요. 저희는 투명한 <span class="highlight">견적</span> 시스템으로 추가 <span class="highlight">비용</span> 발생을 최소화합니다.</p>
+
+            <h3>Q3. <span class="highlight">산본 인테리어</span> <span class="highlight">추천</span> 업체 <span class="highlight">장단점</span> <span class="highlight">비교</span>는 어떻게 하나요?</h3>
+            <p>업체의 포트폴리오(시공 실적), <span class="highlight">내돈내산</span> 후기, A/S <span class="highlight">보증</span> 기간을 확인하세요. <span class="highlight">싼곳</span>보다는 믿을 수 있는 업체를 선택하는 것이 <span class="highlight">장점</span>이 훨씬 많습니다. <span class="highlight">산본</span> 지역의 경우 노후 아파트 시공 경험이 많은 업체를 선택하는 것이 <span class="highlight">단점</span>을 줄이는 방법입니다.</p>
+
+            <h3>Q4. <span class="highlight">산본 리모델링</span> 시 필수 <span class="highlight">체크리스트</span>는 무엇인가요?</h3>
+            <p>가장 중요한 것은 현장 방문 <span class="highlight">견적</span>과 시공 전 이웃 동의 확보입니다. 또한 <span class="highlight">인테리어 업체</span>와의 계약서에 명시된 자재 등급과 시공 범위가 일치하는지 확인해야 합니다. 공사 중 현장 방문을 통해 진행 상황을 확인하는 것도 좋습니다.</p>
+        </section>
+
+        <!-- 섹션 8: 외부 신뢰 링크 및 정보 출처 (SEO 최적화) -->
+        <section id="external-links">
+            <h2>인테리어 관련 신뢰 정보 출처 및 참고 자료</h2>
+            <p>성공적인 인테리어를 위해서는 공인된 정보를 참고하는 것이 중요합니다. 아래는 <span class="highlight">산본 인테리어</span>와 관련된 유용한 정보 출처입니다.</p>
+            <ul>
+                <li><strong>국토교통부 주택 통계 시스템:</strong> <a href="https://stat.molit.go.kr" target="_blank" rel="noopener noreferrer">국토교통부 주택 통계</a>를 통해 군포시 주택 노후도 및 관련 정보를 확인할 수 있습니다.</li>
+                <li><strong>한국소비자원 피해 구제 사례:</strong> <a href="https://www.ccn.go.kr" target="_blank" rel="noopener noreferrer">한국소비자원</a>에서 인테리어 시공 관련 소비자 피해 사례 및 분쟁 해결 기준을 확인하여 <span class="highlight">업체별</span> <span class="highlight">장단점</span>을 비교해 볼 수 있습니다.</li>
+                <li><strong>인테리어 자재 관련 정보 (나무위키):</strong> <a href="https://namu.wiki/w/%EC%9D%B8%ED%85%8C%EB%A6%AC%EC%96%B4" target="_blank" rel="noopener noreferrer">나무위키</a>에서 인테리어 용어, 마감재 종류, 시공 방법 등에 대한 상세 정보를 찾아볼 수 있습니다.</li>
+                <li><strong>군포시청 건축과:</strong> <a href="https://www.gunpo.go.kr" target="_blank" rel="noopener noreferrer">군포시청</a>에서 인테리어 시 필요한 건축 허가 또는 신고 사항(예: 발코니 확장, 비내력벽 철거)에 대한 정보를 확인할 수 있습니다.</li>
+                <li><strong>환경부 친환경 건축자재 정보:</strong> <a href="https://www.me.go.kr" target="_blank" rel="noopener noreferrer">환경부</a> 웹사이트에서 친환경 인테리어 자재 및 인증 정보에 대한 <span class="highlight">비교</span> 정보를 얻을 수 있습니다.</li>
+            </ul>
+        </section>
+
+        <!-- 섹션 9: 상담 폼 (SEO/사용자 체류 시간 증대) -->
+        <section id="consultation">
+            <span id="consultation-anchor" class="anchor"></span>
+            <h2>산본 인테리어 무료 <span class="highlight">견적</span> 상담 문의</h2>
+            <p>고객님의 <span class="highlight">예상</span> <span class="highlight">비용</span>과 원하는 <span class="highlight">리모델링</span> 유형을 정확히 파악하여 가장 합리적인 <span class="highlight">견적</span>을 제공해 드립니다. 아래 폼을 작성하여 <span class="highlight">산본</span> <span class="highlight">추천</span> 인테리어 <span class="highlight">업체</span>와 상담을 시작하세요.</p>
+            <form action="/submit" method="POST" style="max-width:600px; margin:auto;">
+                <label for="name">이름<span style="color:red;">*</span></label><br />
+                <input type="text" id="name" name="name" required placeholder="예: 홍길동" />
+
+                <label for="phone">연락처<span style="color:red;">*</span></label><br />
+                <input type="tel" id="phone" name="phone" required placeholder="010-1234-5678" pattern="[0-9\-]+" />
+
+                <label for="address">현재 주소 (예: 산본동 주공1단지)</label><br />
+                <input type="text" id="address" name="address" placeholder="예: 산본동 ○○아파트 ○○평" />
+
+                <label for="move-type">인테리어 유형<span style="color:red;">*</span></label><br />
+                <select id="move-type" name="move_type" required>
+                    <option value="">선택하세요</option>
+                    <option value="전체_리모델링">전체 리모델링 (올 수리)</option>
+                    <option value="부분_리모델링">부분 리모델링 (주방, 욕실 등)</option>
+                    <option value="평수_상관_없음">평수 무관 (단순 견적문의)</option>
+                </select>
+
+                <label for="budget">예상 <span class="highlight">비용</span> 범위</label><br />
+                <select id="budget" name="budget">
+                    <option value="">선택하세요</option>
+                    <option value="1000">1,000만원 미만</option>
+                    <option value="1000-2000">1,000만원 ~ 2,000만원</option>
+                    <option value="2000-3000">2,000만원 ~ 3,000만원</option>
+                    <option value="3000-4000">3,000만원 ~ 4,000만원</option>
+                    <option value="4000+">4,000만원 이상</option>
+                </select>
+
+                <label for="start_date">희망 시공 시작 시기</label><br />
+                <input type="text" id="start_date" name="start_date" placeholder="예: 2026년 3월 예정" />
+
+                <label for="message">추가 요청 사항</label><br />
+                <textarea id="message" name="message" rows="4" placeholder="예: 30평대 아파트 주방과 욕실만 리모델링 원합니다."></textarea>
+
+                <button type="submit" class="btn-cta">무료 견적 상담 신청하기</button>
+            </form>
+        </section>
     </main>
-  </body>
-</html>
+</div>
+
+
+  
